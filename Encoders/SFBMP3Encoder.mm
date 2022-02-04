@@ -78,7 +78,9 @@ struct ::std::default_delete<lame_global_flags> {
 	if(sourceFormat.channelCount < 1 || sourceFormat.channelCount > 2)
 		return nil;
 
-	return [[AVAudioFormat alloc] initWithCommonFormat:AVAudioPCMFormatFloat32 sampleRate:sourceFormat.sampleRate channels:(AVAudioChannelCount)sourceFormat.channelCount interleaved:YES];
+	AVAudioFormat* format = [[AVAudioFormat alloc] initWithCommonFormat:sourceFormat.commonFormat sampleRate:sourceFormat.sampleRate channels:(AVAudioChannelCount)sourceFormat.channelCount interleaved:YES];
+	os_log_error(gSFBAudioEncoderLog, "_processingFormat = (%@)", format);
+	return format;
 }
 
 - (BOOL)openReturningError:(NSError **)error
@@ -99,6 +101,7 @@ struct ::std::default_delete<lame_global_flags> {
 
 	// Initialize the LAME encoder
 	auto result = lame_set_num_channels(gfp.get(), static_cast<int>(_processingFormat.channelCount));
+	os_log_error(gSFBAudioEncoderLog, "lame_set_num_channels(%d)", _processingFormat.channelCount);
 	if(result == -1) {
 		os_log_error(gSFBAudioEncoderLog, "lame_set_num_channels(%d) failed", _processingFormat.channelCount);
 		if(error)
@@ -107,6 +110,7 @@ struct ::std::default_delete<lame_global_flags> {
 	}
 
 	result = lame_set_in_samplerate(gfp.get(), static_cast<int>(_processingFormat.sampleRate));
+	os_log_error(gSFBAudioEncoderLog, "lame_set_in_samplerate(%f)", _processingFormat.sampleRate);
 	if(result == -1) {
 		os_log_error(gSFBAudioEncoderLog, "lame_set_in_samplerate(%f) failed", _processingFormat.sampleRate);
 		if(error)
@@ -146,6 +150,7 @@ struct ::std::default_delete<lame_global_flags> {
 	BOOL targetIsBitrate = [[_settings objectForKey:SFBAudioEncodingSettingsKeyMP3TargetIsBitrate] boolValue];
 	if(!targetIsBitrate) {
 		auto fastVBR = [[_settings objectForKey:SFBAudioEncodingSettingsKeyMP3EnableFastVBR] boolValue];
+		os_log_error(gSFBAudioEncoderLog, "lame_set_VBR(%d)", fastVBR ? vbr_mtrh : vbr_rh);
 		result = lame_set_VBR(gfp.get(), fastVBR ? vbr_mtrh : vbr_rh);
 		if(result == -1) {
 			os_log_error(gSFBAudioEncoderLog, "lame_set_VBR(%d) failed", fastVBR ? vbr_mtrh : vbr_rh);
@@ -156,6 +161,7 @@ struct ::std::default_delete<lame_global_flags> {
 
 		NSNumber *vbrQuality = [_settings objectForKey:SFBAudioEncodingSettingsKeyMP3VBRQuality];
 		if(vbrQuality != nil) {
+			os_log_error(gSFBAudioEncoderLog, "lame_set_VBR_quality(%f)", vbrQuality.floatValue);
 			result = lame_set_VBR_quality(gfp.get(), vbrQuality.floatValue);
 			if(result == -1) {
 				os_log_error(gSFBAudioEncoderLog, "lame_set_VBR_quality(%f) failed", vbrQuality.floatValue);
@@ -168,6 +174,7 @@ struct ::std::default_delete<lame_global_flags> {
 	else {
 		auto bitrate = [[_settings objectForKey:SFBAudioEncodingSettingsKeyMP3Bitrate] intValue] * 1000;
 		result = lame_set_brate(gfp.get(), bitrate);
+		os_log_error(gSFBAudioEncoderLog, "lame_set_brate(%d)", bitrate);
 		if(result == -1) {
 			os_log_error(gSFBAudioEncoderLog, "lame_set_brate(%d) failed", bitrate);
 			if(error)
@@ -178,6 +185,7 @@ struct ::std::default_delete<lame_global_flags> {
 		auto enableCBR = [[_settings objectForKey:SFBAudioEncodingSettingsKeyMP3EnableCBR] boolValue];
 		if(enableCBR) {
 			result = lame_set_VBR(gfp.get(), vbr_off);
+			os_log_error(gSFBAudioEncoderLog, "lame_set_VBR(vbr_off)");
 			if(result == -1) {
 				os_log_error(gSFBAudioEncoderLog, "lame_set_VBR(vbr_off) failed");
 				if(error)
@@ -187,6 +195,7 @@ struct ::std::default_delete<lame_global_flags> {
 		}
 		else {
 			result = lame_set_VBR(gfp.get(), vbr_default);
+			os_log_error(gSFBAudioEncoderLog, "lame_set_VBR(vbr_default)");
 			if(result == -1) {
 				os_log_error(gSFBAudioEncoderLog, "lame_set_VBR(vbr_default) failed");
 				if(error)
@@ -195,6 +204,7 @@ struct ::std::default_delete<lame_global_flags> {
 			}
 
 			result = lame_set_VBR_min_bitrate_kbps(gfp.get(), bitrate);
+			os_log_error(gSFBAudioEncoderLog, "lame_set_VBR_min_bitrate_kbps(%d)", bitrate);
 			if(result == -1) {
 				os_log_error(gSFBAudioEncoderLog, "lame_set_VBR_min_bitrate_kbps(%d) failed", bitrate);
 				if(error)
@@ -275,15 +285,16 @@ struct ::std::default_delete<lame_global_flags> {
 			*error = [NSError errorWithDomain:NSPOSIXErrorDomain code:ENOMEM userInfo:nil];
 		return NO;
 	}
-
-	auto result = lame_encode_buffer_interleaved_ieee_float(_gfp.get(), (const float *)buffer.audioBufferList->mBuffers[0].mData, static_cast<int>(frameLength), buf.get(), static_cast<int>(bufsize));
+	
+	os_log_error(gSFBAudioEncoderLog, "lame_encode_buffer_interleaved frameLength = (%d)", frameLength);
+	auto result = lame_encode_buffer_ieee_float(_gfp.get(), (const float *)buffer.audioBufferList->mBuffers[0].mData, (const float *)buffer.audioBufferList->mBuffers[0].mData, static_cast<int>(frameLength), buf.get(), static_cast<int>(bufsize));
 	if(result == -1) {
-		os_log_error(gSFBAudioEncoderLog, "lame_encode_buffer_interleaved_ieee_float failed");
+		os_log_error(gSFBAudioEncoderLog, "lame_encode_buffer_ieee_float failed");
 		if(error)
 			*error = [NSError errorWithDomain:SFBAudioEncoderErrorDomain code:SFBAudioEncoderErrorCodeInternalError userInfo:nil];
 		return NO;
 	}
-
+	
 	NSInteger bytesWritten;
 	if(![_outputSource writeBytes:buf.get() length:result bytesWritten:&bytesWritten error:error] || bytesWritten != result)
 		return NO;

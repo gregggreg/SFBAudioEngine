@@ -306,6 +306,20 @@
 		32DBB6F8256D65D40002DEAA /* SFBOggFLACEncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 32DBB6F4256D65D40002DEAA /* SFBOggFLACEncoder.mm */; };
 		32DD9D7E257BCF8A00B47CFD /* SFBOggOpusEncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 32DD9D79257BCF8A00B47CFD /* SFBOggOpusEncoder.mm */; };
 		32DD9D7F257BCF8A00B47CFD /* SFBOggOpusEncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 32DD9D79257BCF8A00B47CFD /* SFBOggOpusEncoder.mm */; };
+		371D2FE22645ADB90049B32D /* SFBOggVorbisDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 3212968F244A2AD70008DC93 /* SFBOggVorbisDecoder.h */; };
+		371D2FE32645ADBA0049B32D /* SFBOggVorbisDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 3212968F244A2AD70008DC93 /* SFBOggVorbisDecoder.h */; };
+		371D2FE42645ADBC0049B32D /* SFBOggVorbisDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 32129690244A2AD70008DC93 /* SFBOggVorbisDecoder.m */; };
+		371D2FE52645ADBC0049B32D /* SFBOggVorbisDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 32129690244A2AD70008DC93 /* SFBOggVorbisDecoder.m */; };
+		371D2FE62645ADC60049B32D /* SFBOggVorbisEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 32DFEC5825698EFF005D4C39 /* SFBOggVorbisEncoder.h */; };
+		371D2FE72645ADC60049B32D /* SFBOggVorbisEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 32DFEC5825698EFF005D4C39 /* SFBOggVorbisEncoder.h */; };
+		371D2FE82645ADC80049B32D /* SFBOggVorbisEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DFEC5725698EFF005D4C39 /* SFBOggVorbisEncoder.m */; };
+		371D2FE92645ADC90049B32D /* SFBOggVorbisEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DFEC5725698EFF005D4C39 /* SFBOggVorbisEncoder.m */; };
+		371D2FEA2645ADD00049B32D /* SFBOggVorbisFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 32BC09BA2426871B008BB695 /* SFBOggVorbisFile.h */; };
+		371D2FEB2645ADD00049B32D /* SFBOggVorbisFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 32BC09BA2426871B008BB695 /* SFBOggVorbisFile.h */; };
+		371D2FEC2645ADD30049B32D /* SFBOggVorbisFile.mm in Sources */ = {isa = PBXBuildFile; fileRef = 32BC09BB2426871B008BB695 /* SFBOggVorbisFile.mm */; };
+		371D2FED2645ADD30049B32D /* SFBOggVorbisFile.mm in Sources */ = {isa = PBXBuildFile; fileRef = 32BC09BB2426871B008BB695 /* SFBOggVorbisFile.mm */; };
+		371D2FEE2645ADDB0049B32D /* vorbis.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3271448C254F1FCD00029BD7 /* vorbis.xcframework */; };
+		371D2FEF2645ADDC0049B32D /* vorbis.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3271448C254F1FCD00029BD7 /* vorbis.xcframework */; };
 		37DABE362644E64400280BBB /* mpg123.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3267793A254C421F0041B063 /* mpg123.xcframework */; };
 		37DABE372644E64500280BBB /* mpg123.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3267793A254C421F0041B063 /* mpg123.xcframework */; };
 		37DABE3B2644E7BA00280BBB /* ogg.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32714B252550430A00029BD7 /* ogg.xcframework */; };
@@ -573,6 +587,7 @@
 				32714C592551D4DF00029BD7 /* AudioToolbox.framework in Frameworks */,
 				32714C5B2551D4DF00029BD7 /* AVFoundation.framework in Frameworks */,
 				32714C5C2551D4DF00029BD7 /* Foundation.framework in Frameworks */,
+				371D2FEF2645ADDC0049B32D /* vorbis.xcframework in Frameworks */,
 				32714C5D2551D4DF00029BD7 /* CoreAudio.framework in Frameworks */,
 				32714C5E2551D4DF00029BD7 /* CoreServices.framework in Frameworks */,
 				32714C602551D4DF00029BD7 /* flac.xcframework in Frameworks */,
@@ -600,6 +615,7 @@
 				3271423E254F10AA00029BD7 /* flac.xcframework in Frameworks */,
 				328501B8256AA1C4009140DE /* lame.xcframework in Frameworks */,
 				32714B24255042D000029BD7 /* opus.xcframework in Frameworks */,
+				371D2FEE2645ADDB0049B32D /* vorbis.xcframework in Frameworks */,
 				326782F3254E66900041B063 /* taglib.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1011,6 +1027,7 @@
 				32714BAF2551D4DF00029BD7 /* SFBMemoryMappedFileInputSource.h in Headers */,
 				32714BB02551D4DF00029BD7 /* SFBAudioFile.h in Headers */,
 				32714BB42551D4DF00029BD7 /* SFBAudioExporter.h in Headers */,
+				371D2FEB2645ADD00049B32D /* SFBOggVorbisFile.h in Headers */,
 				32714BB52551D4DF00029BD7 /* SFBAudioMetadata+TagLibAPETag.h in Headers */,
 				32714BB62551D4DF00029BD7 /* SFBFileInputSource.h in Headers */,
 				32714BB72551D4DF00029BD7 /* SFBAttachedPicture.h in Headers */,
@@ -1039,6 +1056,7 @@
 				32D740C2255F6D91004D3C1A /* SFBPCMEncoding.h in Headers */,
 				3215031E25EBD2CE00714F62 /* AVAudioFormat+SFBFormatTransformation.h in Headers */,
 				32714BD92551D4DF00029BD7 /* SFBOggOpusDecoder.h in Headers */,
+				371D2FE32645ADBA0049B32D /* SFBOggVorbisDecoder.h in Headers */,
 				32D740D0255F6D91004D3C1A /* SFBOutputSource+Internal.h in Headers */,
 				32714BDB2551D4DF00029BD7 /* SFBInputSource+Internal.h in Headers */,
 				32DBB6F6256D65D40002DEAA /* SFBOggFLACEncoder.h in Headers */,
@@ -1061,6 +1079,7 @@
 				32D740C4255F6D91004D3C1A /* SFBAudioEncoding.h in Headers */,
 				32714BEE2551D4DF00029BD7 /* SFBAudioDecoder.h in Headers */,
 				32D740C8255F6D91004D3C1A /* SFBAudioEncoder+Internal.h in Headers */,
+				371D2FE72645ADC60049B32D /* SFBOggVorbisEncoder.h in Headers */,
 				32714BF02551D4DF00029BD7 /* TagLibStringUtilities.h in Headers */,
 				32714BF22551D4DF00029BD7 /* SFBAudioMetadata+TagLibXiphComment.h in Headers */,
 				32D740C6255F6D91004D3C1A /* SFBAudioEncoder.h in Headers */,
@@ -1086,6 +1105,7 @@
 				326D3C99242CF79C002AEC52 /* SFBAudioFile.h in Headers */,
 				328DDD642544E73200B6A093 /* SFBAudioExporter.h in Headers */,
 				322859D9242564AE0080B500 /* SFBAudioMetadata+TagLibAPETag.h in Headers */,
+				371D2FEA2645ADD00049B32D /* SFBOggVorbisFile.h in Headers */,
 				325A5E0A243F8D8B003138D5 /* SFBFileInputSource.h in Headers */,
 				3291CC2A14F5D03C00B34DA4 /* SFBAttachedPicture.h in Headers */,
 				322859D5242554040080B500 /* SFBAudioMetadata+TagLibTag.h in Headers */,
@@ -1114,6 +1134,7 @@
 				326D3CBA242D2A21002AEC52 /* SFBMP4File.h in Headers */,
 				3215031D25EBD2CD00714F62 /* AVAudioFormat+SFBFormatTransformation.h in Headers */,
 				32073138256313C8008BEDA7 /* SFBAudioConverter.h in Headers */,
+				371D2FE22645ADB90049B32D /* SFBOggVorbisDecoder.h in Headers */,
 				322A9140256EEF71006795AA /* SFBCoreAudioEncoder.h in Headers */,
 				32BC09A424263FCC008BB695 /* SFBAudioMetadata+TagLibID3v2Tag.h in Headers */,
 				322859BA242417B10080B500 /* SFBAudioMetadata.h in Headers */,
@@ -1136,6 +1157,7 @@
 				325A5E10243F8D8B003138D5 /* SFBHTTPInputSource.h in Headers */,
 				3294A6FA2445FA2D00841138 /* SFBLoopableRegionDecoder.h in Headers */,
 				32569570256DC1D2003F09C5 /* SFBOggOpusEncoder.h in Headers */,
+				371D2FE62645ADC60049B32D /* SFBOggVorbisEncoder.h in Headers */,
 				325A5E18243F8DC0003138D5 /* SFBAudioDecoder.h in Headers */,
 				326D3CAB242D1D3D002AEC52 /* TagLibStringUtilities.h in Headers */,
 				32BC09AC2426536D008BB695 /* SFBAudioMetadata+TagLibXiphComment.h in Headers */,
@@ -1253,8 +1275,10 @@
 				32714C082551D4DF00029BD7 /* SFBMPEGDecoder.m in Sources */,
 				32714C0A2551D4DF00029BD7 /* SFBAudioMetadata.m in Sources */,
 				32714C0C2551D4DF00029BD7 /* SFBDataInputSource.m in Sources */,
+				371D2FE92645ADC90049B32D /* SFBOggVorbisEncoder.m in Sources */,
 				3229C5BA25CF5D8B002395CD /* SFBRingBuffer.cpp in Sources */,
 				3229C5B725CF5D81002395CD /* AVAudioFormat+SFBFormatTransformation.m in Sources */,
+				371D2FE52645ADBC0049B32D /* SFBOggVorbisDecoder.m in Sources */,
 				32714C0F2551D4DF00029BD7 /* SFBAudioPlayerNode.mm in Sources */,
 				32714C102551D4DF00029BD7 /* SFBCoreAudioDecoder.mm in Sources */,
 				32D740CC255F6D91004D3C1A /* SFBFileOutputSource.m in Sources */,
@@ -1304,6 +1328,7 @@
 				32D740C0255F6D91004D3C1A /* SFBAudioEncoder.m in Sources */,
 				32D740CE255F6D91004D3C1A /* SFBMutableDataOutputSource.m in Sources */,
 				32714C542551D4DF00029BD7 /* SFBMP4File.mm in Sources */,
+				371D2FED2645ADD30049B32D /* SFBOggVorbisFile.mm in Sources */,
 				32714C552551D4DF00029BD7 /* SFBFLACFile.mm in Sources */,
 				32714C562551D4DF00029BD7 /* SFBInputSource.swift in Sources */,
 				3229C5B625CF5D81002395CD /* AVAudioPCMBuffer+SFBBufferUtilities.m in Sources */,
@@ -1321,6 +1346,7 @@
 				3268F81B24509BAF006A5911 /* SFBAudioPlayerNode.mm in Sources */,
 				325A5E8D2444B931003138D5 /* SFBCoreAudioDecoder.mm in Sources */,
 				326D3CAD242D1D97002AEC52 /* SFBMP3File.mm in Sources */,
+				371D2FE42645ADBC0049B32D /* SFBOggVorbisDecoder.m in Sources */,
 				325A5E17243F8DC0003138D5 /* SFBFLACDecoder.mm in Sources */,
 				32BC09A524263FCC008BB695 /* SFBAudioMetadata+TagLibID3v2Tag.mm in Sources */,
 				3229C5B525CF5D80002395CD /* AVAudioChannelLayout+SFBChannelLabels.m in Sources */,
@@ -1333,6 +1359,7 @@
 				3229C5B325CF5D80002395CD /* AVAudioPCMBuffer+SFBBufferUtilities.m in Sources */,
 				3229C5B025CF5D71002395CD /* AudioStreamBasicDescription+SFBExtensions.swift in Sources */,
 				32D73974259A771300C0E3F6 /* AudioBox.swift in Sources */,
+				371D2FEC2645ADD30049B32D /* SFBOggVorbisFile.mm in Sources */,
 				32D739A0259D844500C0E3F6 /* AudioBufferListWrapper.swift in Sources */,
 				325A5E3E24408C8D003138D5 /* SFBAudioPlayer.mm in Sources */,
 				32DD9D7E257BCF8A00B47CFD /* SFBOggOpusEncoder.mm in Sources */,
@@ -1360,6 +1387,7 @@
 				326D3C98242CF79C002AEC52 /* SFBAudioFile.m in Sources */,
 				3229C5BD25CF5D8C002395CD /* SFBRingBuffer.cpp in Sources */,
 				32D740CD255F6D91004D3C1A /* SFBMutableDataOutputSource.m in Sources */,
+				371D2FE82645ADC80049B32D /* SFBOggVorbisEncoder.m in Sources */,
 				3268F8692455B527006A5911 /* SFBReplayGainAnalyzer.m in Sources */,
 				322859D02425528B0080B500 /* SFBAudioMetadata+TagLibID3v1Tag.mm in Sources */,
 				32D740D1255F6D91004D3C1A /* SFBBufferOutputSource.m in Sources */,
@@ -1404,6 +1432,7 @@
 		32714C7A2551D4DF00029BD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1425,6 +1454,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -1432,6 +1462,7 @@
 		32714C7B2551D4DF00029BD7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1441,6 +1472,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1453,6 +1485,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -1460,6 +1493,7 @@
 		32C212D71091116D00BA2493 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -1484,6 +1518,7 @@
 		32C212D81091116D00BA2493 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
