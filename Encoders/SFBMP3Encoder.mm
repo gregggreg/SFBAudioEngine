@@ -286,13 +286,37 @@ struct ::std::default_delete<lame_global_flags> {
 		return NO;
 	}
 	
-	os_log_error(gSFBAudioEncoderLog, "lame_encode_buffer_interleaved frameLength = (%d)", frameLength);
-	auto result = lame_encode_buffer_ieee_float(_gfp.get(), (const float *)buffer.audioBufferList->mBuffers[0].mData, (const float *)buffer.audioBufferList->mBuffers[0].mData, static_cast<int>(frameLength), buf.get(), static_cast<int>(bufsize));
-	if(result == -1) {
-		os_log_error(gSFBAudioEncoderLog, "lame_encode_buffer_ieee_float failed");
-		if(error)
-			*error = [NSError errorWithDomain:SFBAudioEncoderErrorDomain code:SFBAudioEncoderErrorCodeInternalError userInfo:nil];
-		return NO;
+	int result;
+	
+	if (buffer.floatChannelData) {
+		os_log_error(gSFBAudioEncoderLog, "lame_encode_buffer_ieee_float frameLength = (%d)", frameLength);
+		result = lame_encode_buffer_ieee_float(_gfp.get(), (const float *)buffer.audioBufferList->mBuffers[0].mData, (const float *)buffer.audioBufferList->mBuffers[0].mData, static_cast<int>(frameLength), buf.get(), static_cast<int>(bufsize));
+		if(result == -1) {
+			os_log_error(gSFBAudioEncoderLog, "lame_encode_buffer_ieee_float failed");
+			if(error)
+				*error = [NSError errorWithDomain:SFBAudioEncoderErrorDomain code:SFBAudioEncoderErrorCodeInternalError userInfo:nil];
+			return NO;
+		}
+	}
+	else if (buffer.int32ChannelData) {
+		os_log_error(gSFBAudioEncoderLog, "lame_encode_buffer_int frameLength = (%d)", frameLength);
+		result = lame_encode_buffer_int(_gfp.get(), (const int *)buffer.audioBufferList->mBuffers[0].mData, (const int *)buffer.audioBufferList->mBuffers[0].mData, static_cast<int>(frameLength), buf.get(), static_cast<int>(bufsize));
+		if(result == -1) {
+			os_log_error(gSFBAudioEncoderLog, "lame_encode_buffer_int failed");
+			if(error)
+				*error = [NSError errorWithDomain:SFBAudioEncoderErrorDomain code:SFBAudioEncoderErrorCodeInternalError userInfo:nil];
+			return NO;
+		}
+	}
+	else {
+		os_log_error(gSFBAudioEncoderLog, "lame_encode_buffer frameLength = (%d)", frameLength);
+		result = lame_encode_buffer(_gfp.get(), (const short int *)buffer.audioBufferList->mBuffers[0].mData, (const short int *)buffer.audioBufferList->mBuffers[0].mData, static_cast<int>(frameLength), buf.get(), static_cast<int>(bufsize));
+		if(result == -1) {
+			os_log_error(gSFBAudioEncoderLog, "lame_encode_buffer failed");
+			if(error)
+				*error = [NSError errorWithDomain:SFBAudioEncoderErrorDomain code:SFBAudioEncoderErrorCodeInternalError userInfo:nil];
+			return NO;
+		}
 	}
 	
 	NSInteger bytesWritten;
